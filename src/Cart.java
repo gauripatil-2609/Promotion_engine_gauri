@@ -43,7 +43,7 @@ public class Cart {
 	
     int ApplyPromotion(String item , int units) {
     	int Total =0;
-    	int number_of_C =0;
+    	
     	switch(item) {
     	case "A" :
     		Total =((units/3)*130 + (units%3)*50);
@@ -52,25 +52,50 @@ public class Cart {
     		Total = ((units/2)*45 + (units%2)*30);
     		break;
     	case "C" :
-    		number_of_C = units;
-    		Total = units*20;
-    		break;
-    	case "D" :
-    		if (number_of_C == 0) {
-    			Total = units*15;
+    		
+        	int number_of_C = units;
+    		if (cart_items.get("C") == 0) {
+    			break;
+    		}
+    		if (cart_items.get("D") == null) {
+    			Total = units*20;
     		}
     		else {
-    			if (number_of_C == units) {
+    			int number_of_D = cart_items.get("D");
+    			if (number_of_C == number_of_D) {
     				Total = units*30;
     			}
-    			else if (number_of_C < units) {
-    				Total = (units - number_of_C)*15 + number_of_C *30;
+    			else if (number_of_C < number_of_D) {
+    				Total = (number_of_D - number_of_C)*15 + number_of_C *30;
     				
     			}
     			else {
-    				Total = (number_of_C - units)*20 + units * 30;
+    				Total = (number_of_C - number_of_D)*20 + number_of_D * 30;
     			}
     		}
+    		cart_items.put("D",0);
+    		break;
+    	case "D" :
+    		if (cart_items.get("D") == 0) {
+    			break;
+    		}
+    		if (cart_items.get("C") == null) {
+    			Total = units*15;
+    		}
+    		else {
+    			int number_C = cart_items.get("C");
+    			if (number_C == units) {
+    				Total = units*30;
+    			}
+    			else if (number_C < units) {
+    				Total = (units - number_C)*15 + number_C *30;
+    				
+    			}
+    			else {
+    				Total = (number_C - units)*20 + units * 30;
+    			}
+    		}
+    		cart_items.put("C",0);
     		break;
     		
     	}
