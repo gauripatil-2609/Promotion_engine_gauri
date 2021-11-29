@@ -34,5 +34,17 @@ public class PromotionEngineTest {
 		assertEquals(370,shoppingCart.getTotal(),0);
 		
 	}
+	
+	@Test
+	
+	public void TestScenarioC() {
+		Cart shoppingCart = new Cart();
+		shoppingCart.add_item("A",3);
+		shoppingCart.add_item("B",5);
+		shoppingCart.add_item("C",1);
+		shoppingCart.add_item("D",1);
+		assertEquals(280,shoppingCart.getTotal(),0);
+		
+	}
 
 }
