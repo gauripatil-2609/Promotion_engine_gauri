@@ -20,17 +20,26 @@ public class Cart {
 		}
 		else {
 			
-			for(String item: cart_items.keySet()) {
-				TotalCost = TotalCost + (cart_items.get(item)*inventory.get(item));
-			}
+			TotalCost = calculateTotalCost();
 			
+						
 		}
 		return TotalCost;
 		
 	}
 
 
-
+	private int calculateTotalCost() {
+		
+		int TotalCost = 0;
+		
+		for(String item: cart_items.keySet()) {
+			
+			TotalCost = TotalCost + (cart_items.get(item)*inventory.get(item));
+		}
+		
+		return TotalCost;
+	}
 	public void add_item(String string, int i) {
 		// TODO Auto-generated method stub
 		cart_items.put(string,i);
