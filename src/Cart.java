@@ -6,14 +6,23 @@ public class Cart {
 	Map<String, Integer> inventory = new HashMap<String, Integer>();
 	Map<String, Integer> cart_items = new HashMap<String, Integer>();
 	
-	
+	public Cart() {
+		inventory.put("A", 50);
+		inventory.put("B", 30);
+		inventory.put("C", 20);
+		inventory.put("D", 15);
+	}
 	public int getTotal() {
-		int TotalCost =-1;
+		int TotalCost =0;
 		
 		if (cart_items.isEmpty()) {
-			TotalCost = 0;
+			
 		}
 		else {
+			
+			for(String item: cart_items.keySet()) {
+				TotalCost = TotalCost + (cart_items.get(item)*inventory.get(item));
+			}
 			
 		}
 		return TotalCost;
